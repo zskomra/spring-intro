@@ -8,7 +8,7 @@ import pl.sda.projects.adverts.model.domain.User;
 public class AdvertsApplication {
 
 	public static void main(String[] args) {
-		User user = new User();
+
 
 		SpringApplication.run(AdvertsApplication.class, args);
 	}
