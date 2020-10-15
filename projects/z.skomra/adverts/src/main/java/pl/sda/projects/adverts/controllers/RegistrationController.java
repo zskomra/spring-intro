@@ -2,6 +2,7 @@ package pl.sda.projects.adverts.controllers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,11 +18,15 @@ import pl.sda.projects.adverts.model.repository.UserRepository;
 public class RegistrationController {
 
     private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired // userRepostiory będzie wstrzyknięte teraz przez Springa
-    public RegistrationController (UserRepository userRepository) {
+    public RegistrationController (UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
+
+
 
     @GetMapping
     public String prepareRegistrationPage(Model model){
@@ -35,15 +40,17 @@ public class RegistrationController {
                                           @RequestParam String firstName,
                                           @RequestParam String lastName,
                                             ModelMap model){
+        String encdoedPassword = passwordEncoder.encode(password);
         User user = User.builder()
                 .username(username)
-                .password(password)
+                .password(encdoedPassword)
                 .firstName(firstName)
                 .lastName(lastName)
                 .build();
         log.debug("User to save: {}", user);
         userRepository.save(user);
         log.info("New user saved: {}", user);
+        log.info("password {}", encdoedPassword);
         model.addAttribute("savedUser", user);
         return "registration/registration-summary";
     };
