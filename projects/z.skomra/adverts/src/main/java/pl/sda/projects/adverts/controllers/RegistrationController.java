@@ -46,6 +46,7 @@ public class RegistrationController {
                 .password(encdoedPassword)
                 .firstName(firstName)
                 .lastName(lastName)
+                .active(true)
                 .build();
         log.debug("User to save: {}", user);
         userRepository.save(user);
