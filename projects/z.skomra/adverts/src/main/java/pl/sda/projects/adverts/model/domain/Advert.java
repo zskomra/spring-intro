@@ -1,19 +1,19 @@
 package pl.sda.projects.adverts.model.domain;
 
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@Entity(name = "adverts")
+@Entity @Table(name = "adverts")
 @Getter @Setter @ToString(exclude = "user") @EqualsAndHashCode(of = "id")
+@NoArgsConstructor @AllArgsConstructor
+@Builder
 public class Advert {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

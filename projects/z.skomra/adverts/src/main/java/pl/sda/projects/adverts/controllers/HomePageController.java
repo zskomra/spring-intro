@@ -14,11 +14,11 @@ import pl.sda.projects.adverts.model.repository.AdvertRepository;
 @RequiredArgsConstructor
 public class HomePageController {
 
-    private AdvertRepository advertRepository;
+    private final AdvertRepository advertRepository;
 
     @GetMapping
     public String prepareHomePage(Model model) {
-        model.addAttribute("adverts", advertRepository.findAllByOrderByPostedDesc());
+        model.addAttribute("adverts", advertRepository.findAll());
         return "home";
     }
 }
