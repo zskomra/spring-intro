@@ -38,7 +38,6 @@
                 <label>Treść:
                     <textarea rows="6" cols="80" th:field="*{description}"></textarea>
                 </label><br/>
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <button type="submit">Dodaj</button>
             </form>
 
