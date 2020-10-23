@@ -21,29 +21,29 @@
 <body>
 <div class="container">
 
-    <div class="row" style="margin-top: 40px; margin-bottom: 10px">
-        <div class="col-1"></div>
-        <div class="col-6"><h2>Dodaj ogłoszenie</h2></div>
-        <div class="col-5"></div>
-    </div>
+<!--    <div class="row" style="margin-top: 40px; margin-bottom: 10px">-->
+<!--        <div class="col-1"></div>-->
+<!--        <div class="col-6"><h2>Dodaj ogłoszenie</h2></div>-->
+<!--        <div class="col-5"></div>-->
+<!--    </div>-->
 
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+<!--    <div class="row">-->
+<!--        <div class="col-2"></div>-->
+<!--        <div class="col-8">-->
 
-            <form method="post" th:action="@{/add-advert}" th:object="${advertToAdd}">
-                <label>Tytuł:
-                    <input type="text" th:field="*{title}"/>
-                </label><br/>
-                <label>Treść:
-                    <textarea rows="6" cols="80" th:field="*{description}"></textarea>
-                </label><br/>
-                <button type="submit">Dodaj</button>
-            </form>
+<!--            <form method="post" th:action="@{/add-advert}" th:object="${advertToAdd}">-->
+<!--                <label>Tytuł:-->
+<!--                    <input type="text" th:field="*{title}"/>-->
+<!--                </label><br/>-->
+<!--                <label>Treść:-->
+<!--                    <textarea rows="6" cols="80" th:field="*{description}"></textarea>-->
+<!--                </label><br/>-->
+<!--                <button type="submit">Dodaj</button>-->
+<!--            </form>-->
 
-        </div>
-        <div class="col-2"></div>
-    </div>
+<!--        </div>-->
+<!--        <div class="col-2"></div>-->
+<!--    </div>-->
 
     <div class="row" style="margin-top: 40px; margin-bottom: 10px">
         <div class="col-1"></div>
@@ -60,6 +60,7 @@
                     <th>Treść</th>
                     <th>Autor</th>
                     <th>Data dodania</th>
+                    <th>Akcje</th>
                 </tr>
                 <tr th:each="advert, stat : ${adverts}" th:object="${advert}">
                     <td th:text="${stat.count}">1</td>
@@ -67,11 +68,12 @@
                     <td th:text="${advert.description}">Treść</td>
                     <td th:text="${advert.user.username}">Username</td>
                     <td th:text="${advert.postedFormatted}">yyyy-MM-dd</td>
+                    <td th:text="Todo"></td>
                 </tr>
             </table>
             <li class="nav-item active mx-1">
-                <a class="nav-link btn btn-outline-info" role="button" href="/user-adverts"><span
-                        class="text-lg-left">Twoje ogłoszenia</span></a>
+                <a class="nav-link btn btn-outline-info" role="button" href="/"><span
+                        class="text-lg-left">Wszystkie ogłoszenia</span></a>
             </li>
         </div>
     </div>

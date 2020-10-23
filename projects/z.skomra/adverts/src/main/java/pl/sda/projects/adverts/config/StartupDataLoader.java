@@ -55,6 +55,32 @@ public class StartupDataLoader {
                 .user(endriu)
                 .posted(LocalDateTime.now().minusDays(1).minusHours(4))
                 .build());
+        userRepository.save(User.builder()
+                .firstName("Alan")
+                .lastName("Nosow")
+                .username("alan")
+                .password(passwordEncoder.encode("alan"))
+                .active(true)
+                .build());
+        User alan = userRepository.getByUsername("alan");
+        advertRepository.save(Advert.builder()
+                .title("Kupię pieska")
+                .description("Kupię ładnego, spokojnego pieska")
+                .user(alan)
+                .posted(LocalDateTime.now())
+                .build());
+        advertRepository.save(Advert.builder()
+                .title("Oddam dom")
+                .description("Oddam mieszkanie w centrum sosnowca")
+                .user(alan)
+                .posted(LocalDateTime.now().minusDays(1))
+                .build());
+        advertRepository.save(Advert.builder()
+                .title("Zjem konar drzewa")
+                .description("Zjem dowolne drzewo ")
+                .user(alan)
+                .posted(LocalDateTime.now().minusDays(1).minusHours(4))
+                .build());
         log.info("Startup data loaded");
     }
 
